@@ -1,0 +1,71 @@
+Public class DeckofCards {
+	
+	// Lead Programmer Isaiah Trujillo
+	//Write a Program that picks four cards from a set of fifty two
+	//and computes their total. An Ace = 1, King = 13, Queen = 12, and Jack = 11
+	
+	// Set the ranks and values
+	static String[] suit = {“Spades”, “Hearts”, “Diamonds”, “Clubs”};
+    static String[] rank = { “Ace”, “2”, “3”, “4”, “5”, “6”, “7”,
+            “8”, “9”, “10”, “Jack”, “Queen”, “King”};
+    public static void main(String[] args) {
+
+        int sum = 0;
+        int cardCount = 0;
+        String[] cards = new String[4];
+
+        while (sum != 24 || cardCount != 4) {
+
+            if (sum > 24 || cardCount > 3) {
+                cardCount = 0;
+                sum = 0;
+            }
+            int suitIndex = getRandomSuit();
+            int rankIndex = getRandomRank();
+
+            cards[cardCount] = getSpecifiedCard(rankIndex, suitIndex);
+            
+            //Set it to display total amount of Evert points
+            System.out.println(“Evert Points = “ + (rankIndex + 1));
+            sum += rankIndex + 1;
+            cardCount++;
+
+        }
+
+        for (int I = 0; I < cards.length; i++) {
+
+            System.out.println(cards[i] + “ = “ + I + “ Evert Points”);
+        }
+        
+        System.out.println(“And a Grand total of = “ + sum);
+        System.out.println(“Spectacular!”);
+
+
+    }
+
+    public static String getSpecifiedCard(int rankIndex, int suitIndex) {
+        return rank[rankIndex] + “ of “ + suit[suitIndex];
+    }
+    public static String getRandomCard() {
+
+
+        int suitIndex = getRandomSuit();
+        int rankIndex = getRandomRank();
+
+        return rank[rankIndex] + “ of “ + suit[suitIndex];
+    }
+
+    public static int getRandom() {
+        return (int) (Math.random() * 52);
+    }
+
+    public static int getRandomSuit(){
+        return getRandom() / 13;
+    }
+
+    public static int getRandomRank(){
+        return getRandom() % 13;
+    }
+
+
+}
